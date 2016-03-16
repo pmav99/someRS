@@ -31,7 +31,7 @@ os.chdir(INPUT_FOLDER)
 
 images = []
 for file in glob.glob("*.tif") :
-	images.append(file.split(".")[0])
+    images.append(file.split(".")[0])
 
 
 
@@ -53,21 +53,21 @@ segmentation based on both spatial and range modes.
 
 
 for image in images :
-	print(image)
+    print(image)
 
-	path_input = '"' + INPUT_FOLDER + image + '.tif" '
-	path_output = '"' + DESTINATION_FOLDER + image + '_FILTERED_RANGE_010.tif" '
-	path_outpos = '"' + DESTINATION_FOLDER + image + '_FILTERED_SPATIAL_010.tif" '
+    path_input = '"' + INPUT_FOLDER + image + '.tif" '
+    path_output = '"' + DESTINATION_FOLDER + image + '_FILTERED_RANGE_010.tif" '
+    path_outpos = '"' + DESTINATION_FOLDER + image + '_FILTERED_SPATIAL_010.tif" '
 
-	cmdln1 = '/usr/bin/otbcli_MeanShiftSmoothing -in ' + path_input
-	cmdln2 = '-spatialr 5 -ranger 15 -thres 0.1 -maxiter 100 -rangeramp 0 -modesearch false '
-	cmdln3 = '-fout ' + path_output + ' -foutpos ' + path_outpos
+    cmdln1 = '/usr/bin/otbcli_MeanShiftSmoothing -in ' + path_input
+    cmdln2 = '-spatialr 5 -ranger 15 -thres 0.1 -maxiter 100 -rangeramp 0 -modesearch false '
+    cmdln3 = '-fout ' + path_output + ' -foutpos ' + path_outpos
 
-	cmdln = cmdln1 + cmdln2 + cmdln3
+    cmdln = cmdln1 + cmdln2 + cmdln3
 
-	print(cmdln)
+    print(cmdln)
 
-	os.system(cmdln)
+    os.system(cmdln)
 
 print("Filtering completed")
 print("Starting LSMS Segmentation")
@@ -111,20 +111,20 @@ The tmpdir option allows to specify a different directory for these intermediate
 
 for image in images :
 
-	print(image)
+    print(image)
 
-	path_input1 = '"' + DESTINATION_FOLDER + image + '_FILTERED_RANGE_010.tif" '
-	path_input2 = '"' + DESTINATION_FOLDER + image + '_FILTERED_SPATIAL_010.tif" '
-	path_output = '"' + DESTINATION_FOLDER + image + '_SEG.tif" '
+    path_input1 = '"' + DESTINATION_FOLDER + image + '_FILTERED_RANGE_010.tif" '
+    path_input2 = '"' + DESTINATION_FOLDER + image + '_FILTERED_SPATIAL_010.tif" '
+    path_output = '"' + DESTINATION_FOLDER + image + '_SEG.tif" '
 
-	cmdln1 = '/usr/bin/otbcli_LSMSSegmentation -in ' + path_input1 + ' -inpos ' + path_input2
-	cmdln2 = '-out ' + path_output + ' -ranger 30 -spatialr 5 -minsize 0 -tilesizex 256 -tilesizey 256 '
+    cmdln1 = '/usr/bin/otbcli_LSMSSegmentation -in ' + path_input1 + ' -inpos ' + path_input2
+    cmdln2 = '-out ' + path_output + ' -ranger 30 -spatialr 5 -minsize 0 -tilesizex 256 -tilesizey 256 '
 
-	cmdln = cmdln1 + cmdln2
+    cmdln = cmdln1 + cmdln2
 
-	print(cmdln)
+    print(cmdln)
 
-	os.system(cmdln)
+    os.system(cmdln)
 
 print("Segmentation completed.")
 

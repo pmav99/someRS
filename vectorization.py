@@ -37,7 +37,7 @@ os.chdir(INPUT_FOLDER)
 
 images = []
 for file in glob.glob("*.tif") :
-	images.append(file.split(".")[0])
+    images.append(file.split(".")[0])
 
 
 """
@@ -65,21 +65,21 @@ file to disk.
 
 
 for image in images :
-	print(image)
+    print(image)
 
-	path_input = '"'INPUT_FOLDER + image + '.tif" '
-	path_inseg = '"'DESTINATION_FOLDER + image + '_MERGED.tif" '
-	path_out = '"'DESTINATION_FOLDER + image + '_SEG_VECT.shp" '
+    path_input = '"'INPUT_FOLDER + image + '.tif" '
+    path_inseg = '"'DESTINATION_FOLDER + image + '_MERGED.tif" '
+    path_out = '"'DESTINATION_FOLDER + image + '_SEG_VECT.shp" '
 
-	cmdln1 = '/usr/bin/otbcli_LSMSVectorization -in ' + path_input
-	cmdln2 = '-inseg ' + path_inseg
-	cmdln3 = '-out ' + path_out + ' -tilesizex 256 -tilesizey 256 '
+    cmdln1 = '/usr/bin/otbcli_LSMSVectorization -in ' + path_input
+    cmdln2 = '-inseg ' + path_inseg
+    cmdln3 = '-out ' + path_out + ' -tilesizex 256 -tilesizey 256 '
 
-	cmdln = cmdln1 + cmdln2 + cmdln3
+    cmdln = cmdln1 + cmdln2 + cmdln3
 
-	print(cmdln)
+    print(cmdln)
 
-	os.system(cmdln)
+    os.system(cmdln)
 
 print("Vectorization completed.")
 

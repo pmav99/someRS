@@ -37,7 +37,7 @@ os.chdir(INPUT_FOLDER)
 
 images = []
 for file in glob.glob("*.tif") :
-	images.append(file.split(".")[0])
+    images.append(file.split(".")[0])
 
 """
 The LSMSSegmentation application allows to filter out small segments.
@@ -66,21 +66,21 @@ application, it does not require to write any temporary file to disk.
 
 for image in images :
 
-	print(image)
+    print(image)
 
-	path_input = '"' + DESTINATION_FOLDER + image + '_FILTERED_RANGE_010.tif" '
-	path_inseg = '"' + DESTINATION_FOLDER + image + '_SEG.tif" '
-	path_output = '"' + DESTINATION_FOLDER + image + '_MERGED.tif" '
+    path_input = '"' + DESTINATION_FOLDER + image + '_FILTERED_RANGE_010.tif" '
+    path_inseg = '"' + DESTINATION_FOLDER + image + '_SEG.tif" '
+    path_output = '"' + DESTINATION_FOLDER + image + '_MERGED.tif" '
 
-	cmdln1 = '/usr/bin/otbcli_LSMSSmallRegionsMerging -in ' + path_input + ' -inseg ' + path_inseg
-	cmdln2 = '-out ' + path_output + ' uint32 -minsize 10 -tilesizex 256 -tilesizey 256 '
+    cmdln1 = '/usr/bin/otbcli_LSMSSmallRegionsMerging -in ' + path_input + ' -inseg ' + path_inseg
+    cmdln2 = '-out ' + path_output + ' uint32 -minsize 10 -tilesizex 256 -tilesizey 256 '
 
 
-	cmdln = cmdln1 + cmdln2
+    cmdln = cmdln1 + cmdln2
 
-	print(cmdln)
+    print(cmdln)
 
-	os.system(cmdln)
+    os.system(cmdln)
 
 print("Merge completed.")
 
